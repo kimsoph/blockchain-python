@@ -5,8 +5,8 @@
 블록체인과 상호작용할 수 있는 명령줄 인터페이스를 제공합니다.
 """
 
-from blockchain import Blockchain
-from transaction import Transaction
+from .blockchain import Blockchain
+from .transaction import Transaction
 
 
 def print_menu():

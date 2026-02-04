@@ -14,10 +14,13 @@ Python으로 구현한 블록체인 학습용 프로젝트입니다.
 
 ```
 blockChain/
-├── block.py          # Block 클래스 - 블록 정의, 해시 계산, 채굴
-├── blockchain.py     # Blockchain 클래스 - 체인 관리, 트랜잭션
-├── transaction.py    # Transaction 클래스 - 거래 정의
-├── main.py           # CLI 인터페이스
+├── src/
+│   ├── __init__.py       # 패키지 초기화
+│   ├── block.py          # Block 클래스 - 블록 정의, 해시 계산, 채굴
+│   ├── blockchain.py     # Blockchain 클래스 - 체인 관리, 트랜잭션
+│   ├── transaction.py    # Transaction 클래스 - 거래 정의
+│   └── main.py           # CLI 인터페이스
+├── CLAUDE.md
 └── README.md
 ```
 
@@ -25,7 +28,7 @@ blockChain/
 
 ```bash
 # Python 3.7+ 필요
-python main.py
+python -m src.main
 ```
 
 ## 사용법

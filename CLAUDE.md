@@ -33,15 +33,16 @@ hashlib.sha256(string.encode('utf-8')).hexdigest()
 
 | 파일 | 역할 |
 |------|------|
-| `block.py` | Block 클래스 - 해시 계산, 채굴(PoW) |
-| `blockchain.py` | Blockchain 클래스 - 체인 관리, 트랜잭션, 검증 |
-| `transaction.py` | Transaction 클래스 - 거래 정의 및 유효성 검사 |
-| `main.py` | CLI 메뉴 및 사용자 인터페이스 |
+| `src/__init__.py` | 패키지 초기화, 모듈 export |
+| `src/block.py` | Block 클래스 - 해시 계산, 채굴(PoW) |
+| `src/blockchain.py` | Blockchain 클래스 - 체인 관리, 트랜잭션, 검증 |
+| `src/transaction.py` | Transaction 클래스 - 거래 정의 및 유효성 검사 |
+| `src/main.py` | CLI 메뉴 및 사용자 인터페이스 |
 
 ## 실행 방법
 
 ```bash
-python main.py
+python -m src.main
 ```
 
 - 데모 모드: 실행 시 `y` 입력
@@ -81,7 +82,7 @@ Transaction
 
 ```bash
 # 데모 모드로 전체 기능 테스트
-python main.py
+python -m src.main
 # → y 입력
 ```
 
