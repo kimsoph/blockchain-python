@@ -1,0 +1,13 @@
+# 블록체인 프로젝트 의존성
+# Python 3.7+
+
+# 테스트
+pytest>=7.0.0
+pytest-cov>=4.0.0
+
+# 네트워크 (REST API)
+flask>=2.0.0
+requests>=2.25.0
+
+# 시각화
+matplotlib>=3.5.0

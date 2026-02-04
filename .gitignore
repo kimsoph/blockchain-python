@@ -50,6 +50,12 @@ Thumbs.db
 .coverage
 htmlcov/
 
+# Database
+*.db
+
+# Visualizations
+visualizations/
+
 # Sensitive files
 .claude/skills/google-calendar/credentials.json
 .claude/skills/google-calendar/token.pickle

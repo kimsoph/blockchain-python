@@ -3,7 +3,7 @@
 ## 프로젝트 개요
 
 Python으로 구현한 블록체인 학습용 CLI 애플리케이션.
-작업 증명(PoW), 트랜잭션, 체인 검증 등 블록체인 핵심 개념을 구현.
+작업 증명(PoW), 트랜잭션, ECDSA 서명, 체인 검증 등 블록체인 핵심 개념을 구현.
 
 ## 중요 지침
 
@@ -36,13 +36,29 @@ hashlib.sha256(string.encode('utf-8')).hexdigest()
 | `src/__init__.py` | 패키지 초기화, 모듈 export |
 | `src/block.py` | Block 클래스 - 해시 계산, 채굴(PoW) |
 | `src/blockchain.py` | Blockchain 클래스 - 체인 관리, 트랜잭션, 검증 |
-| `src/transaction.py` | Transaction 클래스 - 거래 정의 및 유효성 검사 |
+| `src/transaction.py` | Transaction 클래스 - 거래 정의, 서명/검증 |
+| `src/wallet.py` | Wallet 클래스 - ECDSA 키 쌍 관리, 서명 |
+| `src/crypto_utils.py` | 암호화 유틸리티 - secp256k1 곡선 연산 |
+| `src/storage.py` | BlockchainStorage 클래스 - SQLite 저장소 |
+| `src/network.py` | Flask REST API 서버 |
+| `src/node.py` | Node 클래스 - P2P 노드 관리, 합의 |
+| `src/visualizer.py` | BlockchainVisualizer 클래스 - Matplotlib 시각화 |
 | `src/main.py` | CLI 메뉴 및 사용자 인터페이스 |
 
 ## 실행 방법
 
 ```bash
+# CLI 실행
 python -m src.main
+
+# 테스트 실행
+pytest
+
+# 커버리지 포함
+pytest --cov=src --cov-report=term-missing
+
+# REST API 서버
+python -c "from src.network import run_server; run_server(port=5000)"
 ```
 
 - 데모 모드: 실행 시 `y` 입력
@@ -67,9 +83,34 @@ Blockchain
 └── is_chain_valid() → 체인 검증
 
 Transaction
-├── sender, recipient, amount, timestamp
+├── sender, recipient, amount, timestamp, signature
 ├── to_dict() → 딕셔너리 변환
-└── is_valid() → 유효성 검사
+├── is_valid() → 유효성 검사
+├── sign(wallet) → 지갑으로 서명
+└── verify_signature() → 서명 검증
+
+Wallet
+├── private_key, public_key, address
+├── sign(message) → 메시지 서명
+├── verify(public_key, message, signature) → 서명 검증
+└── from_private_key_hex(hex) → 개인키로 복원
+
+BlockchainStorage
+├── save_block(block_data) → 블록 저장
+├── get_block(index) → 블록 조회
+├── save_transaction(tx_data) → 트랜잭션 저장
+└── get_balance(address) → 잔액 계산
+
+Node
+├── register_node(address) → 노드 등록
+├── fetch_chain(node) → 체인 가져오기
+└── find_longest_chain() → 합의 알고리즘
+
+BlockchainVisualizer
+├── draw_blockchain_structure() → 블록체인 구조 다이어그램
+├── draw_transaction_flow() → 트랜잭션 흐름
+├── draw_balance_chart() → 잔액 변화 그래프
+└── draw_mining_stats() → 채굴 통계
 ```
 
 ### 난이도 설정
@@ -81,12 +122,20 @@ Transaction
 ## 테스트
 
 ```bash
-# 데모 모드로 전체 기능 테스트
-python -m src.main
-# → y 입력
+# 전체 테스트
+pytest
+
+# 특정 모듈 테스트
+pytest tests/test_wallet.py -v
+
+# 커버리지 포함
+pytest --cov=src --cov-report=term-missing
 ```
 
 ## 의존성
 
 - Python 3.7+
-- 외부 라이브러리 없음 (표준 라이브러리만 사용)
+- pytest (테스트)
+- Flask (REST API)
+- matplotlib (시각화)
+- requests (HTTP 클라이언트)
