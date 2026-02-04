@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir:*)",
+      "Bash(powershell -Command \"Get-ChildItem -Path ''D:\\\\_Vibe_Coding\\\\blockChain'' -Force -Recurse | Select-Object FullName | head -100\")",
+      "Bash(powershell:*)",
+      "Bash(git init:*)"
+    ]
+  }
+}

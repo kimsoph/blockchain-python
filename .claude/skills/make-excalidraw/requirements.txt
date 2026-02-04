@@ -1,0 +1,12 @@
+# make-excalidraw 스킬 의존성
+# 외부 패키지 의존성 없음 - Python 표준 라이브러리만 사용
+#
+# 사용되는 표준 라이브러리:
+# - json: Excalidraw JSON 파일 생성
+# - pathlib: 경로 처리
+# - datetime: 타임스탬프 생성
+# - math: 레이아웃 계산 (삼각함수 등)
+# - random: ID 및 seed 생성
+# - string: ID 문자열 생성
+# - re: 마크다운 파싱 (정규표현식)
+# - typing: 타입 힌트

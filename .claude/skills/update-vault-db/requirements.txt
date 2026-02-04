@@ -1,0 +1,14 @@
+# update-vault-db v1.2 dependencies
+# ZK-PARA Vault 메타데이터 DB 관리 스킬
+
+# 표준 라이브러리만 사용 (추가 의존성 없음)
+# - sqlite3 (내장)
+# - json (내장)
+# - pathlib (내장)
+# - unicodedata (내장)
+# - argparse (내장)
+# - datetime (내장)
+# - re (내장)
+# - io (내장)
+# - os (내장)
+# - sys (내장)
