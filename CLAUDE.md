@@ -5,6 +5,30 @@
 Python으로 구현한 블록체인 학습용 CLI 애플리케이션.
 작업 증명(PoW), 트랜잭션, 체인 검증 등 블록체인 핵심 개념을 구현.
 
+## 중요 지침
+
+### 한글 인코딩 (필수)
+
+**모든 작업에서 한글 인코딩에 특히 주의할 것.**
+
+- 모든 Python 파일 상단에 `# -*- coding: utf-8 -*-` 선언
+- 파일 읽기/쓰기 시 `encoding='utf-8'` 명시
+- JSON 직렬화 시 `ensure_ascii=False` 사용
+- print 출력 시 Windows 콘솔 인코딩 고려
+- 문자열 처리 시 `.encode('utf-8')` / `.decode('utf-8')` 명시
+
+```python
+# 파일 읽기
+with open(file, 'r', encoding='utf-8') as f:
+    content = f.read()
+
+# JSON 저장
+json.dumps(data, ensure_ascii=False)
+
+# 해시 계산
+hashlib.sha256(string.encode('utf-8')).hexdigest()
+```
+
 ## 주요 파일
 
 | 파일 | 역할 |
@@ -52,11 +76,6 @@ Transaction
 - 기본 난이도: 4 (해시가 "0000"으로 시작해야 함)
 - `Blockchain(difficulty=N)`으로 조정 가능
 - 난이도가 높을수록 채굴 시간 증가
-
-### 한글 인코딩
-
-- 모든 파일 `# -*- coding: utf-8 -*-` 선언
-- JSON 직렬화 시 `ensure_ascii=False` 사용
 
 ## 테스트
 
