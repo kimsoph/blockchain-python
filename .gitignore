@@ -49,3 +49,7 @@ Thumbs.db
 .pytest_cache/
 .coverage
 htmlcov/
+
+# Sensitive files
+.claude/skills/google-calendar/credentials.json
+.claude/skills/google-calendar/token.pickle
